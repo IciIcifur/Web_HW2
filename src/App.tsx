@@ -1,35 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import useFetch from "./hooks/useFetch.ts";
+import {getBreeds} from "./services/requests.ts";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const { data, loading, error } = useFetch(getBreeds);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1 className='text-amber-700' >Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      return (
+        <>
+            {data?.message?  Object.keys(data.message).map((breed) => {return <p>{breed}</p>}) : null}
+            <a href='https://www.flaticon.com/free-icons/pet-grooming' title="pet grooming icons">Logo credit</a>
+        </>
+      )
 }
 
 export default App
