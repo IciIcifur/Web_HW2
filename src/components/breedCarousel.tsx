@@ -12,7 +12,6 @@ export default function BreedCarousel({ breed }: { breed: string }) {
         setError(null);
       })
       .catch((error) => {
-        console.log(error.message);
         setError(error.message);
       });
   }, [breed]);
