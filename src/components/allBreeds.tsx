@@ -6,8 +6,9 @@ export default function AllBreeds({ data }: { data: any }) {
 
   useEffect(() => {
     if (data.message) {
-      const upperCasedBreeds = Object.keys(data.message);
-      upperCasedBreeds.forEach((breed) => breed.toUpperCase());
+      const upperCasedBreeds = Object.keys(data.message).map((breed) =>
+        breed.toUpperCase(),
+      );
       setBreedList(upperCasedBreeds);
     }
   }, [data]);

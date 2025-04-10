@@ -25,7 +25,17 @@ export default function BreedCarousel({ breed }: { breed: string }) {
           {error}
         </p>
       ) : (
-        <div>{imageUrls[0]}</div>
+        <div className="relative w-full max-w-3xl mx-auto">
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+            {imageUrls.map((image, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 my-2 w-64 h-40 bg-cover bg-center rounded-xl bg-neutral-500"
+                style={{ backgroundImage: `url(${image})` }}
+              ></div>
+            ))}
+          </div>
+        </div>
       )}
     </>
   );
