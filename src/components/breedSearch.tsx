@@ -1,12 +1,10 @@
 import x from "../assets/x.png";
+import { useContext } from "react";
+import { BreedSearchContext } from "./allBreeds.tsx";
 
-export default function BreedSearch({
-  searchValue,
-  setSearchValue,
-}: {
-  searchValue: string;
-  setSearchValue: any;
-}) {
+export default function BreedSearch() {
+  const { searchValue, setSearchValue } = useContext(BreedSearchContext);
+
   return (
     <div className="flex w-full lg:justify-end justify-start">
       <div className=" flex flex-col gap-1 w-96">

@@ -1,6 +1,16 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import BreedCard from "./breedCard.tsx";
 import BreedSearch from "./breedSearch.tsx";
+
+interface BreedSearchContextType {
+  searchValue: string;
+  setSearchValue: (value: string) => void;
+}
+
+export const BreedSearchContext = createContext<BreedSearchContextType>({
+  searchValue: "",
+  setSearchValue: null,
+});
 
 export default function AllBreeds({ data }: { data: any }) {
   const [searchValue, setSearchValue] = useState("");
@@ -29,14 +39,14 @@ export default function AllBreeds({ data }: { data: any }) {
   }, [searchValue, breedList]);
 
   return (
-    <>
-      <BreedSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+    <BreedSearchContext.Provider value={{ searchValue, setSearchValue }}>
+      <BreedSearch />
       {searchValue && filteredBreedList.length === 0 && <p>Nothing found...</p>}
       <div className="flex gap-2 flex-wrap justify-between">
         {filteredBreedList.map((breed) => (
           <BreedCard key={breed} breed={breed} />
         ))}
       </div>
-    </>
+    </BreedSearchContext.Provider>
   );
 }
