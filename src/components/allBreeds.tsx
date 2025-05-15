@@ -9,7 +9,7 @@ interface BreedSearchContextType {
 
 export const BreedSearchContext = createContext<BreedSearchContextType>({
   searchValue: "",
-  setSearchValue: null,
+  setSearchValue: () => {},
 });
 
 export default function AllBreeds({ data }: { data: any }) {
